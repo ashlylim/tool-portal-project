@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VHDL Tools</title>
+  <!-- Apply a saved dark theme before the page draws, to avoid a white flash -->
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-name" href="index.html">VHDL Tools</a>
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false">Dark theme</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>VHDL Tools</h1>
+      <p class="intro">Small browser tools to help you learn and write VHDL. Pick a tool to try it.</p>
+
+      <ul class="tool-grid">
+        <li>
+          <a class="card" href="tools/tool-1/index.html">
+            <span class="card-title">Tool 1 — coming soon</span>
+            <span class="card-desc">Placeholder for the first tool.</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <script src="js/theme.js"></script>
+</body>
+</html>

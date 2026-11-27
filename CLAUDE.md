@@ -5,7 +5,10 @@
 - No frameworks, no build step. Files should open directly in a browser.
 
 ## Project Structure
-The repo is nearly empty for now:
+- `index.html` – portal homepage with the grid of tool cards
+- `css/style.css` – shared styles and the light/dark theme colors
+- `js/theme.js` – light/dark theme toggle, used by every page
+- `tools/<tool-name>/` – one folder per tool (`tools/tool-1/` is a placeholder for now)
 - `README.md` – project readme
 - `CLAUDE.md` – this file
 
@@ -27,7 +30,7 @@ A web portal where students try small VHDL tools in the browser.
 
 ### Phases
 **Phase 1 – Portal + Entity Generator**
-- Homepage, shared header, light/dark toggle, responsive layout.
+- ✅ Done: homepage, shared header, light/dark toggle, responsive layout, plus a placeholder "Tool 1 — coming soon" card that opens and returns via the portal navigation.
 - Entity Generator: student enters an entity name and ports (name, in/out, type, width) and gets ready-to-copy VHDL: libraries, entity, empty architecture.
 - Output has short explanatory comments, the form has tips, and invalid names get plain-language errors.
 - Copy and Download .vhd buttons.
