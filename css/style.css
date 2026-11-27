@@ -14,6 +14,7 @@
   --border: #8a8a8a;
   --link: #0b57d0;
   --focus: #0b57d0;
+  --error: #b3261e;
 }
 
 :root[data-theme="dark"] {
@@ -25,6 +26,7 @@
   --border: #7a7a7a;
   --link: #8ab4f8;
   --focus: #8ab4f8;
+  --error: #ffb4ab;
 }
 
 /* ---------- Base ---------- */
@@ -52,9 +54,18 @@ a {
 }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+pre:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
+}
+
+/* Make the hidden attribute always win over display rules below */
+[hidden] {
+  display: none !important;
 }
 
 /* Centered column with a 16px side gutter on small screens */
@@ -179,5 +190,199 @@ h1 {
 @media (min-width: 960px) {
   .tool-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- Forms (shared by all tools) ---------- */
+.section {
+  margin-bottom: 32px;
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin: 0 0 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  min-width: 0;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+input[type="text"],
+select {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  min-height: 44px;
+  width: 100%;
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--error);
+  border-width: 2px;
+}
+
+.button {
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 14px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.error {
+  color: var(--error);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.error:empty {
+  display: none;
+}
+
+.name-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 16px;
+}
+
+/* Tips box */
+.tips {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.tips summary {
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.tips dl {
+  margin: 8px 0 0;
+}
+
+.tips dt {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.tips dd {
+  margin: 0 0 0 16px;
+}
+
+code,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* Port rows: stacked on phones, one row on wider screens */
+.port-list {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+}
+
+.port-row {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px 4px;
+  margin-bottom: 12px;
+}
+
+.port-row h3 {
+  font-size: 1rem;
+  margin: 0 0 8px;
+}
+
+.port-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 12px;
+}
+
+.port-remove {
+  align-self: start;
+  margin-bottom: 12px;
+}
+
+/* Output */
+.code-box {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 0 0 12px;
+  overflow-x: auto; /* long lines scroll inside the box, not the page */
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+.code-box.is-blocked {
+  white-space: normal;
+  font-family: inherit;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.status {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .name-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .port-fields {
+    grid-template-columns: 2fr 1fr 1.6fr 1fr auto;
+    align-items: start;
+  }
+
+  .port-remove {
+    grid-column: 5;
+    grid-row: 1;
+    margin-top: 27px; /* line up with the inputs, below their labels */
   }
 }

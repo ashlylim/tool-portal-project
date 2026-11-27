@@ -8,7 +8,8 @@
 - `index.html` – portal homepage with the grid of tool cards
 - `css/style.css` – shared styles and the light/dark theme colors
 - `js/theme.js` – light/dark theme toggle, used by every page
-- `tools/<tool-name>/` – one folder per tool (`tools/tool-1/` is a placeholder for now)
+- `tools/<tool-name>/` – one folder per tool, each with its own `index.html` and `.js` file
+  - `tools/entity-generator/` – Entity Generator (phase 1)
 - `README.md` – project readme
 - `CLAUDE.md` – this file
 
@@ -29,11 +30,12 @@ A web portal where students try small VHDL tools in the browser.
 - **Adding a tool later:** create a folder `tools/<tool-name>/` with its own `index.html` and `.js` file, then add one card to the homepage. Shared look and the theme toggle come from `css/style.css` and `js/theme.js`.
 
 ### Phases
-**Phase 1 – Portal + Entity Generator**
-- ✅ Done: homepage, shared header, light/dark toggle, responsive layout, plus a placeholder "Tool 1 — coming soon" card that opens and returns via the portal navigation.
-- Entity Generator: student enters an entity name and ports (name, in/out, type, width) and gets ready-to-copy VHDL: libraries, entity, empty architecture.
-- Output has short explanatory comments, the form has tips, and invalid names get plain-language errors.
-- Copy and Download .vhd buttons.
+**Phase 1 – Portal + Entity Generator** ✅
+- ✅ Done: homepage, shared header, light/dark toggle, responsive layout.
+- ✅ Done: Entity Generator (replaced the "Tool 1" placeholder). Student enters an entity name, architecture name and ports (name, mode, type, width) and gets ready-to-copy VHDL: libraries, entity, empty architecture.
+  - Types: `std_logic`, `std_logic_vector`, `unsigned`, `signed`; width 8 gives `(7 downto 0)`. No generics yet.
+- ✅ Done: output has short explanatory comments, the form has tips, and invalid names/widths get plain-language errors.
+- ✅ Done: Copy and Download .vhd buttons.
 
 **Phase 2 – More tools** (one at a time, ideas to confirm)
 - Testbench generator, truth table → VHDL, vector/number converter.

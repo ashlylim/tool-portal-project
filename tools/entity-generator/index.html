@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entity Generator – VHDL Tools</title>
+  <!-- Apply a saved dark theme before the page draws, to avoid a white flash -->
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-name" href="../../index.html">VHDL Tools</a>
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false">Dark theme</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <a class="back-link" href="../../index.html">← All tools</a>
+      <h1>Entity Generator</h1>
+      <p class="intro">An <strong>entity</strong> is the outside view of a VHDL block: its name and its ports (the pins that carry signals in and out). Fill in the form and copy the ready-made VHDL.</p>
+
+      <form id="entity-form" novalidate>
+        <section class="section" aria-labelledby="names-heading">
+          <h2 id="names-heading">1. Name your block</h2>
+          <div class="name-fields">
+            <div class="field">
+              <label for="entity-name">Entity name</label>
+              <input type="text" id="entity-name" value="counter" autocomplete="off" spellcheck="false" aria-describedby="entity-name-hint entity-name-error">
+              <p class="hint" id="entity-name-hint">The block's name, e.g. <code>counter</code>, <code>alu</code>, <code>uart_tx</code>.</p>
+              <p class="error" id="entity-name-error"></p>
+            </div>
+            <div class="field">
+              <label for="arch-name">Architecture name</label>
+              <input type="text" id="arch-name" value="rtl" autocomplete="off" spellcheck="false" aria-describedby="arch-name-hint arch-name-error">
+              <p class="hint" id="arch-name-hint">Names the inside (the logic) of the block. <code>rtl</code> or <code>behavioral</code> are common.</p>
+              <p class="error" id="arch-name-error"></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="ports-heading">
+          <h2 id="ports-heading">2. Add its ports</h2>
+
+          <details class="tips" open>
+            <summary>Tips: modes, types and width</summary>
+            <dl>
+              <dt>Mode: which way the signal flows</dt>
+              <dd><code>in</code>: comes into the block. <code>out</code>: goes out of the block. <code>inout</code>: both ways, e.g. a shared data bus. <code>buffer</code>: an output the block can also read back.</dd>
+              <dt>Type: what the port carries</dt>
+              <dd><code>std_logic</code>: one wire. <code>std_logic_vector</code>: a group of wires (a bus). <code>unsigned</code> / <code>signed</code>: a bus treated as a number you can do maths with (signed can be negative).</dd>
+              <dt>Width: how many wires a bus has</dt>
+              <dd>8 gives <code>(7 downto 0)</code>: 8 wires numbered 7 to 0, where bit 7 is the most significant bit (the one worth the most).</dd>
+            </dl>
+          </details>
+
+          <ol class="port-list" id="port-list"></ol>
+          <p class="error" id="ports-error"></p>
+          <button type="button" class="button" id="add-port">+ Add port</button>
+        </section>
+      </form>
+
+      <section class="section" aria-labelledby="output-heading">
+        <h2 id="output-heading">3. Your VHDL</h2>
+        <pre class="code-box" id="output" tabindex="0" aria-label="Generated VHDL code"></pre>
+        <div class="actions">
+          <button type="button" class="button" id="copy-btn">Copy</button>
+          <button type="button" class="button" id="download-btn">Download .vhd</button>
+          <p class="status" id="status" role="status"></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../../js/theme.js"></script>
+  <script src="entity-generator.js"></script>
+</body>
+</html>
